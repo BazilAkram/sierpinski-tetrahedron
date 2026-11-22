@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sierpiński Tetrahedron Generator</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+
+    .camera-navigation {
+      position: fixed;
+      z-index: 1;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      left: max(12px, env(safe-area-inset-left));
+      display: grid;
+      gap: 5px;
+      padding: 7px;
+      border: 1px solid #454545;
+      border-radius: 5px;
+      background: #171717f2;
+      color: #fff;
+      font: 13px system-ui, sans-serif;
+      user-select: none;
+    }
+
+    .camera-row {
+      display: grid;
+      grid-template-columns: 40px repeat(6, min(40px, calc((100vw - 108px) / 6)));
+      gap: 4px;
+      align-items: center;
+    }
+
+    .camera-row > span { padding-inline-start: 4px; }
+
+    .camera-row button {
+      min-width: 0;
+      height: 40px;
+      padding: 0;
+      border: 1px solid #525252;
+      border-radius: 4px;
+      background: #292929;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      touch-action: none;
+    }
+
+    .camera-row button:hover { background: #3d3d3d; }
+    .camera-row button:active { background: #245b73; }
+    .camera-row button:focus-visible { outline: 2px solid #79cded; outline-offset: -3px; }
+  </style>
+</head>
+<body>
+  <section class="camera-navigation" aria-label="Camera navigation">
+    <div class="camera-row" role="group" aria-label="Orbit">
+      <span aria-hidden="true">Orbit</span>
+      <button type="button" data-camera-action="orbit-left" aria-label="Orbit left" aria-keyshortcuts="ArrowLeft" title="Orbit left (←)">←</button>
+      <button type="button" data-camera-action="orbit-up" aria-label="Orbit up" aria-keyshortcuts="ArrowUp" title="Orbit up (↑)">↑</button>
+      <button type="button" data-camera-action="orbit-down" aria-label="Orbit down" aria-keyshortcuts="ArrowDown" title="Orbit down (↓)">↓</button>
+      <button type="button" data-camera-action="orbit-right" aria-label="Orbit right" aria-keyshortcuts="ArrowRight" title="Orbit right (→)">→</button>
+    </div>
+    <div class="camera-row" role="group" aria-label="Move">
+      <span aria-hidden="true">Move</span>
+      <button type="button" data-camera-action="move-left" aria-label="Move left" aria-keyshortcuts="A" title="Move left (A)">←</button>
+      <button type="button" data-camera-action="move-up" aria-label="Move up" aria-keyshortcuts="E" title="Move up (E)">↑</button>
+      <button type="button" data-camera-action="move-down" aria-label="Move down" aria-keyshortcuts="Q" title="Move down (Q)">↓</button>
+      <button type="button" data-camera-action="move-right" aria-label="Move right" aria-keyshortcuts="D" title="Move right (D)">→</button>
+      <button type="button" data-camera-action="move-forward" aria-label="Move forward" aria-keyshortcuts="W" title="Move forward (W)">In</button>
+      <button type="button" data-camera-action="move-back" aria-label="Move backward" aria-keyshortcuts="S" title="Move backward (S)">Out</button>
+    </div>
+  </section>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
